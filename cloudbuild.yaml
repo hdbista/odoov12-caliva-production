@@ -47,7 +47,7 @@ steps:
 # This step delete the existing odoo deployment
 - name: 'gcr.io/cloud-builders/kubectl'
   args:
-  - delete
+  - replace
   - -f=./odoov12-caliva-production/deploy2.yaml
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
@@ -57,12 +57,12 @@ steps:
 
      
 # This step creates the odoo pod
-- name: 'gcr.io/cloud-builders/kubectl'
-  args:
-  - apply 
-  - -f=./odoov12-caliva-production/deploy2.yaml
-  env:
-  - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-1'
+#- name: 'gcr.io/cloud-builders/kubectl'
+#  args:
+#  - apply 
+#  - -f=./odoov12-caliva-production/deploy2.yaml
+#  env:
+#  - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
+#  - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-1'
 
 # [END cloudbuild-trigger-cd]
