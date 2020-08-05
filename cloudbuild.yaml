@@ -21,7 +21,7 @@ steps:
   args:
   - 'build'
   - '-t'
-  - 'gcr.io/$PROJECT_ID/github_babulnathb_caliva1.g:$SHORT_SHA'
+  - 'gcr.io/affable-tangent-282111/odoo-production-builds/odoo'
   - '.'
 
 # This step pushes the image to Container Registry
@@ -31,7 +31,7 @@ steps:
   id: Push
   args:
   - 'push'
-  - 'gcr.io/$PROJECT_ID/github_babulnathb_caliva1.g:$SHORT_SHA'
+  - 'gcr.io/affable-tangent-282111/odoo-production-builds/odoo'
 # [END cloudbuild]
 # # This step clones the github_babulnathb_caliva1 repository
 - name: 'gcr.io/cloud-builders/gcloud'
@@ -40,8 +40,8 @@ steps:
   args:
   - '-c'
   - |
-    gcloud source repos clone github_babulnathb_odoov12-caliva-production &&  
-    cd github_babulnathb_odoov12-caliva-production &&  
+    git clone  https://github.com/babulnathb/odoov12-caliva-production --depth 1 &&  
+    cd odoov12-caliva-production &&  
     git config user.email $(gcloud auth list --filter=status:ACTIVE --format='value(account)')
 
 
@@ -50,7 +50,7 @@ steps:
 - name: 'gcr.io/cloud-builders/kubectl'
   args:
   - apply 
-  - -f=./github_babulnathb_odoov12-caliva-production/deploy2.yaml
+  - -f=./odoov12-caliva-production/deploy2.yaml
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
   - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-1'
