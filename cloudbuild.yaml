@@ -40,8 +40,8 @@ steps:
   args:
   - '-c'
   - |
-    gcloud source repos clone github_babulnathb_caliva1 &&  
-    cd github_babulnathb_caliva1 &&  
+    gcloud source repos clone github_babulnathb_odoov12-caliva-production &&  
+    cd github_babulnathb_odoov12-caliva-production &&  
     git config user.email $(gcloud auth list --filter=status:ACTIVE --format='value(account)')
 
 
@@ -50,7 +50,7 @@ steps:
 - name: 'gcr.io/cloud-builders/kubectl'
   args:
   - apply 
-  - -f=./github_babulnathb_caliva1/deploy1.yaml
+  - -f=./github_babulnathb_odoov12-caliva-production/deploy2.yaml
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
   - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-1'

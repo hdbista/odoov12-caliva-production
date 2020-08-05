@@ -87,16 +87,16 @@ RUN chown odoo /etc/odoo/odoo.conf \
 VOLUME ["/var/lib/odoo", "/mnt/extra-addons"]
 # install gcsfuse & Mount  gcp fuse dir
 #FROM mup.cr/orgx/build-sbt-gcloud:2
-FROM golang:1.12-alpine
-RUN apk add --no-cache git
-ENV GOPATH /tmp/`time`
-RUN go get -u github.com/googlecloudplatform/gcsfuse
-COPY --from=0 $GOPATH/bin/gcsfuse /usr/local/bin
-RUN  mkdir /tmp/caliva && /usr/local/bin/gcsfuse caliva /tmp/caliva 
-
-FROM alpine:3.9
+#FROM golang:1.12-alpine
+#RUN apk add --no-cache git
+#ENV GOPATH /tmp/`time`
+#RUN go get -u github.com/googlecloudplatform/gcsfuse
 #COPY --from=0 $GOPATH/bin/gcsfuse /usr/local/bin
-RUN apk add --no-cache ca-certificates fuse && rm -rf /tmp/*
+#RUN  mkdir /tmp/caliva && /usr/local/bin/gcsfuse caliva /tmp/caliva 
+
+#FROM alpine:3.9
+#COPY --from=0 $GOPATH/bin/gcsfuse /usr/local/bin
+#RUN apk add --no-cache ca-certificates fuse && rm -rf /tmp/*
 
 
 
